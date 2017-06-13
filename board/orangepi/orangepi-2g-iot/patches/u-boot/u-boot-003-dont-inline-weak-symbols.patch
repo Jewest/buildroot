@@ -1,0 +1,22 @@
+From c487c1b7ece1f35d19f0955f8265f4147b72a9d9 Mon Sep 17 00:00:00 2001
+From: Leo Soares <leojrfs@gmail.com>
+Date: Tue, 13 Jun 2017 17:04:47 +0100
+Subject: [PATCH] Don't inline weak symbols
+
+---
+ common/main.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/common/main.c b/common/main.c
+index 36233e4..8b7fd8f 100644
+--- a/common/main.c
++++ b/common/main.c
+@@ -52,7 +52,7 @@ DECLARE_GLOBAL_DATA_PTR;
+ /*
+  * Board-specific Platform code can reimplement show_boot_progress () if needed
+  */
+-void inline __show_boot_progress (int val) {}
++void __show_boot_progress (int val) {}
+ void show_boot_progress (int val) __attribute__((weak, alias("__show_boot_progress")));
+ 
+ #if defined(CONFIG_UPDATE_TFTP)
